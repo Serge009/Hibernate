@@ -1,7 +1,8 @@
 package dto;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by Matrix on 15.07.2014.
@@ -10,36 +11,20 @@ import java.util.Date;
 public class UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
     private String username;
-    @Temporal(TemporalType.DATE)
-    private Date joinedDate;
-    private String address;
-    private String description;
 
-    public Date getJoinedDate() {
-        return joinedDate;
+    @ElementCollection
+    private Collection<Address> addresses = new HashSet<>();
+
+    public Collection<Address> getAddresses() {
+        return addresses;
     }
 
-    public void setJoinedDate(Date joinedDate) {
-        this.joinedDate = joinedDate;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAddresses(Collection<Address> listOfAddresses) {
+        this.addresses = listOfAddresses;
     }
 
     public int getUserId() {
@@ -58,4 +43,12 @@ public class UserDetails {
         this.username = username;
     }
 
+    @Override
+    public String toString() {
+        return "UserDetails{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", listOfAddresses=" + addresses +
+                '}';
+    }
 }

@@ -7,7 +7,7 @@ import java.util.HashSet;
 /**
  * Created by Matrix on 15.07.2014.
  */
-@Entity
+@Entity(name = "user_details")
 public class UserDetails {
 
     @Id
@@ -17,6 +17,7 @@ public class UserDetails {
     private String username;
 
     @ElementCollection
+    @CollectionTable(name = "Addresses", joinColumns = { @JoinColumn(name = "user")})
     private Collection<Address> addresses = new HashSet<>();
 
     public Collection<Address> getAddresses() {

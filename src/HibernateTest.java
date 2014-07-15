@@ -38,8 +38,9 @@ public class HibernateTest {
 
         user = (UserDetails)session.get(UserDetails.class, 1);
         session.getTransaction().commit();
-
         System.out.println(user);
+        session.close();
+        factory.close();
 
     }
 }

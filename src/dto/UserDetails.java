@@ -1,13 +1,15 @@
 package dto;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
 /**
  * Created by Matrix on 15.07.2014.
  */
-@Entity(name = "user_details")
+@Entity
+@Table(name = "user_details")
 public class UserDetails {
 
     @Id
@@ -16,16 +18,15 @@ public class UserDetails {
 
     private String username;
 
-    @ElementCollection
-    @CollectionTable(name = "Addresses", joinColumns = { @JoinColumn(name = "user")})
-    private Collection<Address> addresses = new HashSet<>();
+    @ManyToMany
+    private Collection<Vehicle> vehicle = new ArrayList<>();
 
-    public Collection<Address> getAddresses() {
-        return addresses;
+    public Collection<Vehicle> getVehicle() {
+        return vehicle;
     }
 
-    public void setAddresses(Collection<Address> listOfAddresses) {
-        this.addresses = listOfAddresses;
+    public void setVehicle(Collection<Vehicle> vehicle) {
+        this.vehicle = vehicle;
     }
 
     public int getUserId() {
@@ -49,7 +50,6 @@ public class UserDetails {
         return "UserDetails{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
-                ", listOfAddresses=" + addresses +
                 '}';
     }
 }

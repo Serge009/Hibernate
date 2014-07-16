@@ -1,31 +1,35 @@
 package dto;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Created by Matrix on 16.07.2014.
  */
 @Entity
-@Table(name = "vehicle")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Vehicle {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int vehicleId;
     private String vehicleName;
 
-    @ManyToMany(mappedBy = "vehicle")
-    private Collection<UserDetails> users = new ArrayList<>();
+    /*
+    @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
+    private UserDetails user;
 
-    public Collection<UserDetails> getUser() {
-        return users;
+    public UserDetails getUser() {
+        return user;
     }
 
-    public void setUser(Collection<UserDetails> users) {
-        this.users = users;
+    public void setUser(UserDetails user) {
+        this.user = user;
     }
+    */
 
     public int getVehicleId() {
         return vehicleId;

@@ -18,7 +18,8 @@ public class UserDetails {
 
     private String username;
 
-    @ManyToMany
+    /*
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Collection<Vehicle> vehicle = new ArrayList<>();
 
     public Collection<Vehicle> getVehicle() {
@@ -32,6 +33,7 @@ public class UserDetails {
     public int getUserId() {
         return userId;
     }
+    */
 
     public void setUserId(int userId) {
         this.userId = userId;

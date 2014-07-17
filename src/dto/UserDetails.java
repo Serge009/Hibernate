@@ -29,11 +29,12 @@ public class UserDetails {
     public void setVehicle(Collection<Vehicle> vehicle) {
         this.vehicle = vehicle;
     }
+    */
 
     public int getUserId() {
         return userId;
     }
-    */
+
 
     public void setUserId(int userId) {
         this.userId = userId;

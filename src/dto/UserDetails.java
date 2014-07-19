@@ -18,6 +18,16 @@ public class UserDetails {
 
     private String username;
 
+
+    public UserDetails() {
+    }
+
+    public UserDetails(String username) {
+        this.username = username;
+    }
+
+
+
     /*
     @OneToMany(cascade = CascadeType.PERSIST)
     private Collection<Vehicle> vehicle = new ArrayList<>();

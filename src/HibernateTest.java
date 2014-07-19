@@ -27,21 +27,29 @@ public class HibernateTest {
 
     public static void main(String[] args) {
 
-        //createTestUsers();
+        createTestUsers();
 
         UserDetails user = null;
 
         Session session = sessionFactory.openSession();
-
         session.beginTransaction();
 
-        user = (UserDetails) session.get(UserDetails.class, 6);
-        user.setUsername("New Name");
-        System.out.println(user);
-        session.update(user);
-        session.delete(user);
+        user = (UserDetails) session.get(UserDetails.class, 1);
+
         session.getTransaction().commit();
         session.close();
+
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        //user.setUsername("Updated Username After Session Close");
+        session.update(user);
+
+        session.getTransaction().commit();
+
+        session.close();
+
+
 
         sessionFactory.close();
 

@@ -1,6 +1,10 @@
 package dto;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,6 +13,7 @@ import java.util.HashSet;
  * Created by Matrix on 15.07.2014.
  */
 @Entity
+@SelectBeforeUpdate
 @Table(name = "user_details")
 public class UserDetails {
 

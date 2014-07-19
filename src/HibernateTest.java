@@ -1,4 +1,5 @@
 import dto.*;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -29,25 +30,17 @@ public class HibernateTest {
 
         createTestUsers();
 
-        UserDetails user = null;
-
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        user = (UserDetails) session.get(UserDetails.class, 1);
+        Query query = session.createQuery("from UserDetails where userId > 5");
+        List users = query.list();
+
 
         session.getTransaction().commit();
         session.close();
 
-        session = sessionFactory.openSession();
-        session.beginTransaction();
-
-        //user.setUsername("Updated Username After Session Close");
-        session.update(user);
-
-        session.getTransaction().commit();
-
-        session.close();
+        System.out.println("Size of list result = " + users.size());
 
 
 
